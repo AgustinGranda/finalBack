@@ -9,9 +9,10 @@ import { ReviewModule } from './review/review.module';
 import { CommentsModule } from './comments/comments.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeORM } from './common/config.data';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(typeORM()),UsersModule, MoviesModule, RolesModule, GendersModule, ReviewModule, CommentsModule],
+  imports: [TypeOrmModule.forRoot(typeORM()),UsersModule, MoviesModule, RolesModule, GendersModule, ReviewModule, CommentsModule, AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })
