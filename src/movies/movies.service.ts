@@ -21,7 +21,7 @@ export class MoviesService {
 
   async findAll() {
     try {
-      return await this.movieRepository.find();
+      return await this.movieRepository.find({relations:["gender"]});
     } catch (error) {
       throw new BadRequestException();
     }
@@ -29,7 +29,7 @@ export class MoviesService {
 
   async findOne(id: string) {
     try {
-      return await this.movieRepository.findOne({where:{id:id}});
+      return await this.movieRepository.findOne({where:{id:id}, relations:["review", "gender"]});
     } catch (error) {
       throw new NotFoundException();
     }
@@ -37,7 +37,8 @@ export class MoviesService {
 
   async update(id: string, updateMovieDto: UpdateMovieDto) {
     try {
-      return await this.movieRepository.update({id:id}, updateMovieDto);
+      await this.movieRepository.update({id:id}, updateMovieDto);
+      return updateMovieDto;
     } catch (error) {
       throw new BadRequestException();
     }

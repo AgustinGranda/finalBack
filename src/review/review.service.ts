@@ -25,7 +25,7 @@ export class ReviewService {
 
   async findOne(id: string) {
    try {
-    return await this.reviewRepository.findOne({where:{id:id}})
+    return await this.reviewRepository.findOne({where:{id:id}, relations:["user","comment" ]})
    } catch (error) {
     throw new BadRequestException()
    }
@@ -33,7 +33,8 @@ export class ReviewService {
 
   async update(id: string, updateReviewDto: UpdateReviewDto) {
     try {
-      return await this.reviewRepository.update({id:id}, updateReviewDto)
+      await this.reviewRepository.update({id:id}, updateReviewDto)
+      return updateReviewDto;
     } catch (error) {
       throw new BadRequestException()
     }

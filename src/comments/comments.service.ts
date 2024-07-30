@@ -21,7 +21,7 @@ export class CommentsService {
   }
 
   async findAll() {
-    return await this.commentRepository.find();
+    return await this.commentRepository.find({relations:["user"]});
   }
 
   async findOne(id: string) {
@@ -34,7 +34,8 @@ export class CommentsService {
 
   async update(id: string, updateCommentDto: UpdateCommentDto) {
     try {
-      return await this.commentRepository.update({id:id}, updateCommentDto)
+      await this.commentRepository.update({id:id}, updateCommentDto)
+      return updateCommentDto;
     } catch (error) {
       throw new BadRequestException()
     }

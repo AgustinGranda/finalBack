@@ -33,7 +33,8 @@ export class RolesService {
 
   async update(id: string, updateRoleDto: UpdateRoleDto) {
     try {
-     return  await this.roleRepository.update({id:id} ,updateRoleDto)
+      await this.roleRepository.update({id:id} ,updateRoleDto)
+      return updateRoleDto;
     } catch (error) {
       throw new BadRequestException()
     }

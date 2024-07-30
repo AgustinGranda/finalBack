@@ -29,7 +29,7 @@ export class GendersService {
 
   async findOne(id: string) {
     try {
-      return await this.genderRepository.findOne({where:{id:id}})
+      return await this.genderRepository.findOne({where:{id:id}, relations:["movie"]})
     } catch (error) {
       throw new NotFoundException()
     }
@@ -37,7 +37,8 @@ export class GendersService {
 
   async update(id: string, updateGenderDto: UpdateGenderDto) {
       try {
-       return await this.genderRepository.update({id:id}, updateGenderDto)
+        await this.genderRepository.update({id:id}, updateGenderDto)
+        return updateGenderDto;
       } catch (error) {
         throw new BadRequestException()
       }
