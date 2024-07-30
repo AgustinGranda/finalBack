@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Query } from '@nestjs/common';
 import { MoviesService } from './movies.service';
 import { CreateMovieDto } from './dto/create-movie.dto';
 import { UpdateMovieDto } from './dto/update-movie.dto';
@@ -7,7 +7,7 @@ import { AdminGuard } from 'src/guards/admin.guard';
 
 @Controller('movies')
 export class MoviesController {
-  constructor(private readonly moviesService: MoviesService) {}
+  constructor(private readonly moviesService: MoviesService) { }
 
   @UseGuards(AuthGuard)
   @UseGuards(AdminGuard)
@@ -21,10 +21,23 @@ export class MoviesController {
     return this.moviesService.findAll();
   }
 
+  // @Get('search')
+  // searchYear(@Query('year') year: string) {
+  //   return this.moviesService.findByYear(+year);
+  // }
+
+  @Get('search')
+  search(@Query('title') title: string) {
+    return this.moviesService.findByName(title);
+  }
+
+
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.moviesService.findOne(id);
   }
+
 
   @UseGuards(AuthGuard)
   @UseGuards(AdminGuard)

@@ -3,7 +3,7 @@ import { CreateMovieDto } from './dto/create-movie.dto';
 import { UpdateMovieDto } from './dto/update-movie.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Movie } from './entities/movie.entity';
-import { Repository } from 'typeorm';
+import { ILike, Like, Repository } from 'typeorm';
 
 @Injectable()
 export class MoviesService {
@@ -34,6 +34,24 @@ export class MoviesService {
       throw new NotFoundException();
     }
   }
+  
+  async findByName(title: string){
+  
+    try {
+      return await this.movieRepository.find({where:{title: ILike(`%${title}%`)}});
+    } catch (error) {
+      throw new BadRequestException()
+    }
+  }
+
+  // async findByYear(year: number){
+  //   try {
+  //     return await this.movieRepository.find({where:{year:year}})
+  //   } catch (error) {
+  //     throw new BadRequestException()
+  //   }
+  // }
+
 
   async update(id: string, updateMovieDto: UpdateMovieDto) {
     try {
@@ -52,4 +70,11 @@ export class MoviesService {
       throw new BadRequestException()
     }
   }
+
+
+  // para unificar los findby
+  // params(key, value){
+
+  // }
+  
 }
