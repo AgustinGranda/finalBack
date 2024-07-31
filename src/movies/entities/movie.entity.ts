@@ -27,9 +27,9 @@ export class Movie {
     deleted_at: Date;
 
     @OneToMany(()=> Review, review => review.movie)
-    review:Review;
+    reviews:Review;
 
-    @ManyToOne(() => Gender, gender => gender.movie)
+    @ManyToOne(() => Gender, gender => gender.movies)
     gender: Gender;
 
 }

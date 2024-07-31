@@ -13,7 +13,12 @@ export class MoviesService {
 
   async create(createMovieDto: CreateMovieDto) {
     try { 
-      return await this.movieRepository.save(createMovieDto)
+      await this.movieRepository.save(createMovieDto)
+      const respObj = {
+        messege: `Movie ${createMovieDto.title} creted`,
+        statusCode: 201
+      }
+      return respObj
     } catch (error) {
       throw new BadRequestException();
     }
@@ -29,34 +34,38 @@ export class MoviesService {
 
   async findOne(id: string) {
     try {
-      return await this.movieRepository.findOne({where:{id:id}, relations:["review", "gender"]});
+      return await this.movieRepository.findOne({where:{id:id}, relations:["reviews", "gender"]});
     } catch (error) {
       throw new NotFoundException();
     }
   }
   
-  async findByName(title: string){
-  
+  async findByKey( key, value){
+
+    if(key == "title"){
+      try {
+        return await this.movieRepository.find({where:{title: ILike(`%${value}%`)}});
+      } catch (error) {
+        throw new BadRequestException()
+      }
+    }
     try {
-      return await this.movieRepository.find({where:{title: ILike(`%${title}%`)}});
+      return await this.movieRepository.find({where:{year: parseInt(value)}});
     } catch (error) {
       throw new BadRequestException()
     }
   }
 
-  // async findByYear(year: number){
-  //   try {
-  //     return await this.movieRepository.find({where:{year:year}})
-  //   } catch (error) {
-  //     throw new BadRequestException()
-  //   }
-  // }
 
 
   async update(id: string, updateMovieDto: UpdateMovieDto) {
     try {
       await this.movieRepository.update({id:id}, updateMovieDto);
-      return updateMovieDto;
+      const respObj = {
+        messege: `Movie ${id} updated`,
+        statusCode: 201
+      }
+      return respObj
     } catch (error) {
       throw new BadRequestException();
     }
@@ -65,16 +74,14 @@ export class MoviesService {
   async remove(id: string) {
     try {
       await this.movieRepository.softDelete(id)
-      return (`Movie ${id} deleted`)
+      const respObj = {
+        messege: `Movie ${id} removed`,
+        statusCode: 201
+      }
+      return respObj
     } catch (error) {
       throw new BadRequestException()
     }
   }
-
-
-  // para unificar los findby
-  // params(key, value){
-
-  // }
   
 }

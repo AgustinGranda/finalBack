@@ -13,7 +13,12 @@ export class RolesService {
 
   async create(createRoleDto: CreateRoleDto) {
     try {
-      return await this.roleRepository.save(createRoleDto);
+      await this.roleRepository.save(createRoleDto);
+      const respObj = {
+        messege: `Role ${createRoleDto.description} created`,
+        statusCode: 201
+      }
+      return respObj
     } catch (error) {
       throw new BadRequestException()
     }
@@ -34,7 +39,12 @@ export class RolesService {
   async update(id: string, updateRoleDto: UpdateRoleDto) {
     try {
       await this.roleRepository.update({id:id} ,updateRoleDto)
-      return updateRoleDto;
+
+      const respObj = {
+        messege: `Role ${id} updated`,
+        statusCode: 201
+      }
+      return respObj
     } catch (error) {
       throw new BadRequestException()
     }
@@ -43,7 +53,11 @@ export class RolesService {
   async remove(id: string) {
     try {
       await this.roleRepository.softDelete(id)
-      return (`Rol ${id} deleted`)
+      const respObj = {
+        messege: `Role ${id} removed`,
+        statusCode: 201
+      }
+      return respObj
     } catch (error) {
       throw new BadRequestException()
     }

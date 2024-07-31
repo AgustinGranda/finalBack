@@ -14,7 +14,12 @@ export class CommentsService {
 
   async create(createCommentDto: CreateCommentDto) {
     try {
-      return await this.commentRepository.save(createCommentDto);
+      await this.commentRepository.save(createCommentDto);
+      const respObj = {
+        messege: `Comment created`,
+        statusCode: 201
+      }
+      return respObj
     } catch (error) {
       throw new BadRequestException()
     }
@@ -32,21 +37,29 @@ export class CommentsService {
     }
   }
 
-  async update(id: string, updateCommentDto: UpdateCommentDto) {
-    try {
-      await this.commentRepository.update({id:id}, updateCommentDto)
-      return updateCommentDto;
-    } catch (error) {
-      throw new BadRequestException()
-    }
-  }
+  // async update(id: string, updateCommentDto: UpdateCommentDto) {
+  //   try {
+  //     await this.commentRepository.update({id:id}, updateCommentDto)
+  //     const respObj = {
+  //       messege: `Comment ${id} updated`,
+  //       statusCode: 201
+  //     }
+  //     return respObj
+  //   } catch (error) {
+  //     throw new BadRequestException()
+  //   }
+  // }
 
-  async remove(id: string) {
-    try {
-      await this.commentRepository.softDelete(id)
-      return (`Comment ${id} deleted`)
-    } catch (error) {
-      throw new BadRequestException()
-    }
-  }
+  // async remove(id: string) {
+  //   try {
+  //     await this.commentRepository.softDelete(id)
+  //     const respObj = {
+  //       messege: `Comment ${id} deleted`,
+  //       statusCode: 201
+  //     }
+  //     return respObj
+  //   } catch (error) {
+  //     throw new BadRequestException()
+  //   }
+  // }
 }

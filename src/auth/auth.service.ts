@@ -1,7 +1,7 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/users/entities/user.entity';
-import { Repository } from 'typeorm';
+import { getRepository, Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { SignInDto } from './dto/signIn.dto';
 import { JwtService } from '@nestjs/jwt';
@@ -17,18 +17,24 @@ export class AuthService {
 
 
   async singIn( signInDto:SignInDto){
+    
+      // Intento de ocultar pass en relaciones
+    // const passUser = await getRepository(User).createQueryBuilder()
+    // .addSelect('password')
+    // .getOne();
+    
     // Autenticacion
-    const user = await this.userRepository.findOne({where:{email: signInDto.email}, relations:["rol"]});
+    const user = await this.userRepository.findOne({where:{email: signInDto.email}, relations:["rol"]})
     if (!user) throw new UnauthorizedException();
     const isMatch = await bcrypt.compare(signInDto.password, user.password);
     if(!isMatch) throw new UnauthorizedException();
 
 
     const payload = {id: user.id, name: user.name, rol: user.rol.description}
-    const token = this.jwtService.sign(payload, {secret:'moviesadviters', expiresIn: 200 });
+    const token = this.jwtService.sign(payload, {secret:'moviesadviters'});
     return {token: token}
 
   }
-
+  // expiresIn: 200 
 }
 

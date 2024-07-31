@@ -17,6 +17,6 @@ export class Gender {
     deleted_at: Date;
 
     @OneToMany(()=> Movie, movie=> movie.gender)
-    movie:Movie;
+    movies:Movie;
 
 }

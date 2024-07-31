@@ -13,7 +13,12 @@ export class GendersService {
 
   async create(createGenderDto: CreateGenderDto) {
     try {
-      return await this.genderRepository.save(createGenderDto)
+      await this.genderRepository.save(createGenderDto)
+      const respObj = {
+        messege: `Gender ${createGenderDto.description} created`,
+        statusCode: 201
+      }
+      return respObj
     } catch (error) {
       throw new BadRequestException()
     }
@@ -29,7 +34,7 @@ export class GendersService {
 
   async findOne(id: string) {
     try {
-      return await this.genderRepository.findOne({where:{id:id}, relations:["movie"]})
+      return await this.genderRepository.findOne({where:{id:id}, relations:["movies"]})
     } catch (error) {
       throw new NotFoundException()
     }
@@ -38,7 +43,11 @@ export class GendersService {
   async update(id: string, updateGenderDto: UpdateGenderDto) {
       try {
         await this.genderRepository.update({id:id}, updateGenderDto)
-        return updateGenderDto;
+        const respObj = {
+          messege: `Gender ${id} updated`,
+          statusCode: 201
+        }
+        return respObj
       } catch (error) {
         throw new BadRequestException()
       }
@@ -47,7 +56,11 @@ export class GendersService {
   async remove(id: string) {
     try {
       await this.genderRepository.softDelete(id)
-      return (`Gender ${id} deleted`)
+      const respObj = {
+        messege: `Gender ${id} deleted`,
+        statusCode: 201
+      }
+      return respObj
     } catch (error) {
       throw new BadRequestException()
     }

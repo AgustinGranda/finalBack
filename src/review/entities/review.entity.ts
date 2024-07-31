@@ -21,12 +21,12 @@ export class Review {
     @DeleteDateColumn()
     deleted_at: Date;
 
-    @ManyToOne(()=> User, user=> user.review)
+    @ManyToOne(()=> User, user=> user.reviews)
     user:User;
 
-    @ManyToOne(() => Movie, movie => movie.review)
+    @ManyToOne(() => Movie, movie => movie.reviews)
     movie:Movie;
 
     @OneToMany(()=> Comment , comment=> comment.review )
-    comment:Comment;
+    comments:Comment;
 }

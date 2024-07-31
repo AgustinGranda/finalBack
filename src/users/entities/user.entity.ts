@@ -30,7 +30,7 @@ export class User {
     rol:Role
 
     @OneToMany(() => Review, rev => rev.user)
-    review: Review;
+    reviews: Review;
 
     @OneToMany(()=> Comment, comment=> comment.user)
     comment:Comment;

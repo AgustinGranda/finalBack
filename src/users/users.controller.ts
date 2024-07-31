@@ -5,8 +5,10 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { AuthGuard } from 'src/guards/auth.guard';
 import { AdminGuard } from 'src/guards/admin.guard';
 import { UserGuard } from 'src/guards/user.guard';
+import { ApiTags } from '@nestjs/swagger';
 
 
+@ApiTags('users')
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
@@ -17,31 +19,33 @@ export class UsersController {
   }
 
 
-  @UseGuards(AuthGuard)
-  @UseGuards(AdminGuard)
+  @UseGuards(AuthGuard, AdminGuard)
   @Get()
   findAll() {
     return this.usersService.findAll();
   }
 
-  @UseGuards(AuthGuard)
-  @UseGuards(AdminGuard)
+  @UseGuards(AuthGuard, AdminGuard)
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.usersService.findOne(id);
   }
 
-  @UseGuards(AuthGuard)
-  @UseGuards(UserGuard)
+  @UseGuards(AuthGuard, UserGuard)
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.usersService.update(id, updateUserDto);
   }
 
-  @UseGuards(AuthGuard)
-  @UseGuards(AdminGuard)
+  @UseGuards(AuthGuard, AdminGuard)
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.usersService.remove(id);
+  }
+
+  @UseGuards(AuthGuard, AdminGuard)
+  @Post(':id/restore')
+  restore(@Param('id') id: string) {
+    return this.usersService.restore(id);
   }
 }

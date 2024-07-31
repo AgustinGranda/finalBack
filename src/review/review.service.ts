@@ -1,4 +1,4 @@
-import { BadGatewayException, BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateReviewDto } from './dto/create-review.dto';
 import { UpdateReviewDto } from './dto/update-review.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -13,7 +13,12 @@ export class ReviewService {
 
   async create(createReviewDto: CreateReviewDto) {
     try {
-      return await this.reviewRepository.save(createReviewDto);
+      await this.reviewRepository.save(createReviewDto);
+      const respObj = {
+        messege: `Review ${createReviewDto.description} created`,
+        statusCode: 201
+      }
+      return respObj
     } catch (error) {
       throw new BadRequestException()
     }
@@ -25,7 +30,7 @@ export class ReviewService {
 
   async findOne(id: string) {
    try {
-    return await this.reviewRepository.findOne({where:{id:id}, relations:["user","comment" ]})
+    return await this.reviewRepository.findOne({where:{id:id}, relations:["user","comments" ]})
    } catch (error) {
     throw new BadRequestException()
    }
@@ -34,7 +39,11 @@ export class ReviewService {
   async update(id: string, updateReviewDto: UpdateReviewDto) {
     try {
       await this.reviewRepository.update({id:id}, updateReviewDto)
-      return updateReviewDto;
+      const respObj = {
+        messege: `Review ${id} updated`,
+        statusCode: 201
+      }
+      return respObj
     } catch (error) {
       throw new BadRequestException()
     }
@@ -42,8 +51,13 @@ export class ReviewService {
 
   async remove(id: string) {
     try {
+
       await this.reviewRepository.softDelete(id)
-      return (`Review ${id} deleted`)
+      const respObj = {
+        messege: `Review ${id} removed`,
+        statusCode: 201
+      }
+      return respObj
     } catch (error) {
       throw new BadRequestException()
     }

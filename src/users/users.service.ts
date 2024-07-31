@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, NotFoundException, UseGuards } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException} from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -6,7 +6,6 @@ import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { Role } from 'src/roles/entities/role.entity';
-import { AuthGuard } from 'src/guards/auth.guard';
 
 @Injectable()
 export class UsersService {
@@ -25,19 +24,26 @@ export class UsersService {
       createUserDto.password = await bcrypt.hash(createUserDto.password, 10);
 
       await this.userRepository.save(createUserDto)
-      return(`Usuario ${createUserDto.name} creado`)
+      
+      const respObj = {
+        messege: `User ${createUserDto.name} created`,
+        statusCode: 201
+      }
+      return respObj
+
     } catch (error) {
       throw new BadRequestException()
     }
   }
 
   async findAll() {
-    return await this.userRepository.find({relations:["rol"]})
+    //eliminé la relacion con rol
+    return await this.userRepository.find({withDeleted : true});
   }
 
   async findOne(id: string) {
     try {
-      return  await this.userRepository.findOne({where:{id:id},relations:["rol", "review"]});
+      return  await this.userRepository.findOne({where:{id:id},relations:["rol", "reviews"]});
     } catch (error) {
       throw new NotFoundException()
     }
@@ -46,7 +52,11 @@ export class UsersService {
   async update(id: string, updateUserDto: UpdateUserDto) {
     try {
       await this.userRepository.update({id:id}, updateUserDto)
-      return updateUserDto;
+      const respObj = {
+        messege: `User ${id} updated`,
+        statusCode: 201
+      }
+      return respObj
     } catch (error) {
       throw new BadRequestException()
     }
@@ -56,7 +66,26 @@ export class UsersService {
   async remove(id: string) {
     try {
       await  this.userRepository.softDelete(id);
-      return(`User ${id} deleted`)
+      const respObj = {
+        messege: `User ${id} remoded`,
+        statusCode: 201
+      }
+      return respObj
+    } catch (error) {
+      throw new BadRequestException()
+    }
+  }
+
+  async restore(id:string){
+
+    try {
+      await this.userRepository.restore(id);
+      const respObj = {
+        messege: `User ${id} restored`,
+        statusCode: 201
+      }
+      return respObj
+
     } catch (error) {
       throw new BadRequestException()
     }

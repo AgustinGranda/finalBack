@@ -4,13 +4,14 @@ import { CreateMovieDto } from './dto/create-movie.dto';
 import { UpdateMovieDto } from './dto/update-movie.dto';
 import { AuthGuard } from 'src/guards/auth.guard';
 import { AdminGuard } from 'src/guards/admin.guard';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('movies')
 @Controller('movies')
 export class MoviesController {
   constructor(private readonly moviesService: MoviesService) { }
 
-  @UseGuards(AuthGuard)
-  @UseGuards(AdminGuard)
+  @UseGuards(AuthGuard, AdminGuard)
   @Post()
   create(@Body() createMovieDto: CreateMovieDto) {
     return this.moviesService.create(createMovieDto);
@@ -21,16 +22,10 @@ export class MoviesController {
     return this.moviesService.findAll();
   }
 
-  // @Get('search')
-  // searchYear(@Query('year') year: string) {
-  //   return this.moviesService.findByYear(+year);
-  // }
-
   @Get('search')
-  search(@Query('title') title: string) {
-    return this.moviesService.findByName(title);
+  search(@Query('key') key: string , @Query('value') value:string) {
+    return this.moviesService.findByKey(key, value);
   }
-
 
 
   @Get(':id')
@@ -39,15 +34,13 @@ export class MoviesController {
   }
 
 
-  @UseGuards(AuthGuard)
-  @UseGuards(AdminGuard)
+  @UseGuards(AuthGuard, AdminGuard)
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateMovieDto: UpdateMovieDto) {
     return this.moviesService.update(id, updateMovieDto);
   }
 
-  @UseGuards(AuthGuard)
-  @UseGuards(AdminGuard)
+  @UseGuards(AuthGuard, AdminGuard)
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.moviesService.remove(id);
