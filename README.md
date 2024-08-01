@@ -1,73 +1,55 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Movie API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+_Nuestra aplicación es una herramienta diseñada para gestionar peliculas. Permite a los usuarios ver peliculas, puntuarlas, escribir reseñas, dejar comentarios a las reseñas de otros usuarios de manera sencilla y eficiente._
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Comenzando 🚀
 
-## Description
+_Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-## Installation
+### Instalacion 📋
 
-```bash
-$ npm install
+1-Clona el repositorio
+```
+git clone https://github.com/AgustinGranda/finalBack.git
 ```
 
-## Running the app
-
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+2-Navega al directorio del proyecto
+```
+cd back
 ```
 
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+3-Instala las dependencias
+```
+npm install
 ```
 
-## Support
+4-Inicia la aplicacion
+```
+npm run start:dev
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## Construido con 🛠️
 
-## Stay in touch
+* Lenguajes - [Javascript] y [Typescript].
+* Framework Back-End utilizado - [Nest.js](https://docs.nestjs.com/).
+* Framework Front-End utilizado - [React.js](https://es.react.dev/).
+* Base de datos - [PostgreSQL](https://www.postgresql.org/).
+* Otras bibliotecas - **TypeORM**, **Class-transformer**, **class-validator**, **bcrypt**, **JWT** **Swagger**
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+## Versionado 📌
 
-## License
+Usamos [Git](https://git-scm.com/) y [GitHub](https://github.com/) para el versionado. Para todas las versiones disponibles, mira los commits en [este repositorio back-end](https://github.com/AgustinGranda/finalBack/commits/main/) o [este repositorio front-end](https://github.com/lautarolombardiadviters/proyecto-final-frontend/commits/master/).
 
-Nest is [MIT licensed](LICENSE).
+
+## Autores ✒️
+
+* **Agustin Granda** - *Desarrollo Back-End* - [agustinGranda](https://github.com/AgustinGranda)
+* **Lautaro Lombardi** - *Desarrollo Front-End* - [lautarolombardiadviters](https://github.com/lautarolombardiadviters)
+
+También queremos hacer una mencion a quíenes nos ayudaron a resolver problemas para que este proyecto salga adelante (Mentores y compañeros). 
+
+## Expresiones de Gratitud 🎁
+
+* Comenta a otros sobre este proyecto 📢
+* Invita una cerveza 🍺 o un café ☕ al equipo.

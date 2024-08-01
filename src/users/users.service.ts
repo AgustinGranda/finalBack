@@ -49,9 +49,18 @@ export class UsersService {
     }
   }
 
-  async update(id: string, updateUserDto: UpdateUserDto) {
+  async update(id: string, newName: string) {
     try {
-      await this.userRepository.update({id:id}, updateUserDto)
+      
+      const queryBuilder = this.userRepository.createQueryBuilder();
+
+      await queryBuilder
+        .update(User)
+        .set({name : newName})
+        .where('id = :id', { id })
+        .execute();
+
+
       const respObj = {
         messege: `User ${id} updated`,
         statusCode: 201
