@@ -13,11 +13,12 @@ export class User {
     name:string;
 
     @Column('text',{
-        unique: true
+        unique: true,
+        select:false
       })
     email:string;
 
-    @Column('text')
+    @Column('text', {select: false})
     password:string;
 
     @CreateDateColumn()

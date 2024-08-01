@@ -9,7 +9,7 @@ _Estas instrucciones te permitirán obtener una copia del proyecto en funcionami
 
 ### Instalacion 📋
 
-1-Clona el repositorio
+1-Clona el repositorio Back-end
 ```
 git clone https://github.com/AgustinGranda/finalBack.git
 ```
@@ -29,13 +29,34 @@ npm install
 npm run start:dev
 ```
 
+5-Clona el repositorio Front-end
+```
+git clone https://github.com/lautarolombardiadviters/proyecto-final-frontend.git
+```
+
+6-Navega al directorio del proyecto
+```
+cd back
+```
+
+7-Instala las dependencias
+```
+npm install
+```
+
+8-Inicia la aplicacion
+```
+npm run start:dev
+```
+
+
 ## Construido con 🛠️
 
-* Lenguajes - [Javascript] y [Typescript].
+* Lenguajes - **Javascript** y **Typescript**.
 * Framework Back-End utilizado - [Nest.js](https://docs.nestjs.com/).
 * Framework Front-End utilizado - [React.js](https://es.react.dev/).
 * Base de datos - [PostgreSQL](https://www.postgresql.org/).
-* Otras bibliotecas - **TypeORM**, **Class-transformer**, **class-validator**, **bcrypt**, **JWT** **Swagger**
+* Otras bibliotecas - **TypeORM** - **Class-transformer** - **class-validator** - **bcrypt** - **JWT** - **Swagger**
 
 ## Versionado 📌
 

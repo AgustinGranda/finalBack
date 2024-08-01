@@ -17,16 +17,20 @@ export class AuthService {
 
 
   async singIn( signInDto:SignInDto){
-    
-      // Intento de ocultar pass en relaciones
-    // const passUser = await getRepository(User).createQueryBuilder()
-    // .addSelect('password')
-    // .getOne();
+     
     
     // Autenticacion
-    const user = await this.userRepository.findOne({where:{email: signInDto.email}, relations:["rol"]})
+    const user = await this.userRepository
+      .createQueryBuilder('user')
+      .addSelect('user.password')
+      .addSelect('user.email')
+      .where('user.email = :email', { email: signInDto.email })
+      .leftJoinAndSelect('user.rol', 'rol') 
+      .getOne();
+
     if (!user) throw new UnauthorizedException();
     const isMatch = await bcrypt.compare(signInDto.password, user.password);
+    
     if(!isMatch) throw new UnauthorizedException();
 
 

@@ -51,15 +51,12 @@ export class UsersService {
 
   async update(id: string, newName: string) {
     try {
-      
-      const queryBuilder = this.userRepository.createQueryBuilder();
-
-      await queryBuilder
+    
+      await this.userRepository.createQueryBuilder('user')
         .update(User)
         .set({name : newName})
         .where('id = :id', { id })
         .execute();
-
 
       const respObj = {
         messege: `User ${id} updated`,
