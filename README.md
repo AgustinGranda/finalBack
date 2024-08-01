@@ -6,47 +6,53 @@ _Nuestra aplicación es una herramienta diseñada para gestionar peliculas. Perm
 
 _Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
 
+### Pre-requisitos
+
+* PostgreSQL
+* Node.js
+
 
 ### Instalacion 📋
 
-1-Clona el repositorio Back-end
+1 - Clona el repositorio Back-end
 ```
 git clone https://github.com/AgustinGranda/finalBack.git
 ```
 
-2-Navega al directorio del proyecto
+2 - Navega al directorio del proyecto
 ```
 cd back
 ```
 
-3-Instala las dependencias
+3 - Instala las dependencias
 ```
 npm install
 ```
+4 - Cnfigura el archivo "config.data.ts" con tus creadenciales de postgre
+```
+    username: 'your-username',
+    password: 'your-password',
+    database: 'your-data-base',
+```
 
-4-Inicia la aplicacion
+5 - Inicia la aplicacion
 ```
 npm run start:dev
 ```
 
-5-Clona el repositorio Front-end
+6 - Clona el repositorio Front-end
 ```
 git clone https://github.com/lautarolombardiadviters/proyecto-final-frontend.git
 ```
 
-6-Navega al directorio del proyecto
-```
-cd back
-```
-
-7-Instala las dependencias
+7 - Instala las dependencias
 ```
 npm install
 ```
 
-8-Inicia la aplicacion
+8 - Inicia la aplicacion
 ```
-npm run start:dev
+npm run dev
 ```
 
 
@@ -56,7 +62,7 @@ npm run start:dev
 * Framework Back-End utilizado - [Nest.js](https://docs.nestjs.com/).
 * Framework Front-End utilizado - [React.js](https://es.react.dev/).
 * Base de datos - [PostgreSQL](https://www.postgresql.org/).
-* Otras bibliotecas - **TypeORM** - **Class-transformer** - **class-validator** - **bcrypt** - **JWT** - **Swagger**
+* Otras bibliotecas - **TypeORM** - **Class-transformer** - **class-validator** - **bcrypt** - **JWT** - **Swagger** - **chakraUI** - **react-router-dom** 
 
 ## Versionado 📌
 
