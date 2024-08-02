@@ -35,6 +35,7 @@ export class AuthService {
 
 
     const payload = {id: user.id, name: user.name, role: user.rol.description}
+    console.log(payload)
     const token = this.jwtService.sign(payload, {secret:'moviesadviters', expiresIn: 3600000 });
     return {token: token}
 
