@@ -1,11 +1,11 @@
 import {
-    CanActivate,
-    ExecutionContext,
-    Injectable,
-    UnauthorizedException,
-  } from '@nestjs/common';
-  import { JwtService } from '@nestjs/jwt';
-  import { Request } from 'express';
+  CanActivate,
+  ExecutionContext,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
+import { Request } from 'express';
   
   @Injectable()
   export class AdminGuard implements CanActivate {
@@ -19,7 +19,7 @@ import {
       try {
 
         const payload = await this.jwtService.verifyAsync(token,{secret:'moviesadviters'});
-        if(payload.rol === "admin")
+        if(payload.role === "admin")
             return true;
         return false;
 
