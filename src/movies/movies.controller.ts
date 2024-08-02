@@ -1,10 +1,10 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Query } from '@nestjs/common';
-import { MoviesService } from './movies.service';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UseGuards } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
+import { AdminGuard } from 'src/guards/admin.guard';
+import { AuthGuard } from 'src/guards/auth.guard';
 import { CreateMovieDto } from './dto/create-movie.dto';
 import { UpdateMovieDto } from './dto/update-movie.dto';
-import { AuthGuard } from 'src/guards/auth.guard';
-import { AdminGuard } from 'src/guards/admin.guard';
-import { ApiTags } from '@nestjs/swagger';
+import { MoviesService } from './movies.service';
 
 @ApiTags('movies')
 @Controller('movies')
