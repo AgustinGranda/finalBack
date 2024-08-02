@@ -34,7 +34,7 @@ export class AuthService {
     if(!isMatch) throw new UnauthorizedException();
 
 
-    const payload = {id: user.id, name: user.name, rol: user.rol.description}
+    const payload = {id: user.id, name: user.name, role: user.rol.description}
     const token = this.jwtService.sign(payload, {secret:'moviesadviters', expiresIn: 3600000 });
     return {token: token}
 

@@ -32,7 +32,7 @@ npm install
 ```
     username: 'your-username',
     password: 'your-password',
-    database: 'your-data-base',
+    database: 'your-data-base-name',
 ```
 
 5 - Inicia la aplicacion
@@ -54,6 +54,10 @@ npm install
 ```
 npm run dev
 ```
+9 - ingresar en el navegador
+```
+localhost:5173
+```
 
 
 ## Construido con 🛠️
@@ -62,7 +66,7 @@ npm run dev
 * Framework Back-End utilizado - [Nest.js](https://docs.nestjs.com/).
 * Framework Front-End utilizado - [React.js](https://es.react.dev/).
 * Base de datos - [PostgreSQL](https://www.postgresql.org/).
-* Otras bibliotecas - **TypeORM** - **Class-transformer** - **class-validator** - **bcrypt** - **JWT** - **Swagger** - **chakraUI** - **react-router-dom** 
+* Otras bibliotecas - **TypeORM** - **Class-transformer** - **class-validator** - **bcrypt** - **JWT** - **Swagger** - **chakraUI** - **react-router-dom** - **react-hook-form**
 
 ## Versionado 📌
 
